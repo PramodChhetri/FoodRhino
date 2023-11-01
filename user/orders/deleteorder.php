@@ -1,0 +1,26 @@
+<?php
+
+require_once __DIR__ . "/../admin.php";
+
+?>
+
+<?php
+
+$id = request('id');
+
+if (empty($id)) {
+    die("ID not found");
+}
+
+$orders = find('orders', $id);
+
+if (empty($orders)) {
+    die("order not found");
+}
+
+
+delete('orders', $id);
+
+setSuccess('Order of ID ' . $id . ' deleted successfully!');
+header("Location: /foodrhino/user/orders/");
+die;
